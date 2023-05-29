@@ -1,0 +1,42 @@
+﻿@using LaMiaPizzeria.Models.ModelForView
+@model PizzaListCategory 
+<div class="container">
+
+    <form asp-controller="Pizza" asp-action="Create" method="post">
+        @Html.AntiForgeryToken()
+        <div class="mb-3">
+            <label class="form-label">Nome Pizza</label>
+            <input asp-for="Pizzas.Name" class="form-control" required>
+            <span asp-validation-for="Pizzas.Name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Descrizione</label>
+            <input asp-for="Pizzas.Description" class="form-control" required>
+            <span asp-validation-for="Pizzas.Description" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Url Immagine</label>
+            <input asp-for="Pizzas.ImgSource" class="form-control" required>
+            <span asp-validation-for="Pizzas.ImgSource" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Prezzo</label>
+            <input asp-for="Pizzas.Price" class="form-control" required>
+            <span asp-validation-for="Pizzas.Price" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <strong>Categoria:</strong>
+            <select asp-for="Pizzas.PizzaCategoryId" title="PizzaCategory" rows="10" class="d-block w-100">
+                <option value=""></option>
+                @foreach (PizzaCategory category in Model.PizzasCategories ?? new List<PizzaCategory>())
+                {
+                    <option value="@category.Id" selected="@(Model.Pizzas.PizzaCategoryId == category.Id ? "selected" : null)">@category.Name</option>
+                }
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary btn-info" value="Salva">Invia</button>
+    </form>
+
+</div>
+
+

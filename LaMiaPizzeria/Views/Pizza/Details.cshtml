@@ -1,0 +1,21 @@
+﻿@model PizzaModel
+<div class="container mt-3">
+
+    <div class="row mt-3">
+
+        <div class="col-4 mt-2">
+
+            <div class="card">
+                <img src="@Model.ImgSource" class="card-img-top" alt="Tipo di pizza">
+                <div class="card-body">
+                    <h3 class="card-text">Nome: @Model.Name</h3>
+                    <p class="card-text">Descrizione: @Model.Description</p>
+                    <h4 class="card-text">Prezzo: @Model.Price.ToString("0.00") €</h4>
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+
+</div>
