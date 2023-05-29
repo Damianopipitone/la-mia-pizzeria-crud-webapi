@@ -26,7 +26,7 @@ namespace LaMiaPizzeria.Controllers
         {
             using (PizzaContext db = new PizzaContext())
             {
-                PizzaModel? pizzaDetails = db.Pizze.Where(pizza => pizza.id == id).FirstOrDefault();
+                PizzaModel? pizzaDetails = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
 
                 if (pizzaDetails != null)
                 {
@@ -89,7 +89,7 @@ namespace LaMiaPizzeria.Controllers
         {
             using (PizzaContext context = new PizzaContext())
             {
-                PizzaModel? pizzeToEdit = context.Pizze.Where(pizze => pizze.id == id).FirstOrDefault();
+                PizzaModel? pizzeToEdit = context.Pizze.Where(pizze => pizze.Id == id).FirstOrDefault();
 
                 if (pizzeToEdit == null)
                 {
@@ -114,7 +114,7 @@ namespace LaMiaPizzeria.Controllers
 
                 using(PizzaContext db = new PizzaContext())
                 {
-                    PizzaModel? pizzaToUpdate = db.Pizze.Where(pizza => pizza.id == id).FirstOrDefault();
+                    PizzaModel? pizzaToUpdate = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
                     if (pizzaToUpdate == null)
                     {
                         return NotFound();
@@ -135,7 +135,7 @@ namespace LaMiaPizzeria.Controllers
         {
             using(PizzaContext db = new PizzaContext())
             {
-                PizzaModel? pizzaToDelete = db.Pizze.Where(pizza => pizza.id == id).FirstOrDefault();
+                PizzaModel? pizzaToDelete = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
                 if (pizzaToDelete == null)
                 {
                     return NotFound();

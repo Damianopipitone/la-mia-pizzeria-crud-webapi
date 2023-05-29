@@ -1,11 +1,11 @@
 ﻿@model PizzaModel  
 <div class="container">
     <h2 class="mb-3">Modifica della Pizza</h2>
-    <form asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.id" method="post">
+    <form asp-controller="Pizza" asp-action="Update" asp-route-id="@Model.Id" method="post">
         @Html.AntiForgeryToken()
         <div class="mb-3">
-            <label asp-for="id" class="form-label">Id Pizza</label>
-            <input asp-for="id" type="text" class="form-control" readonly>
+            <label asp-for="Id" class="form-label">Id Pizza</label>
+            <input asp-for="Id" type="text" class="form-control" readonly>
         </div>
         <div class="mb-3">
             <label asp-for="Name" class="form-label">Nome</label>
