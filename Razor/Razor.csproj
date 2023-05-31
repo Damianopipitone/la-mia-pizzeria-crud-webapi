@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Include="..\LaMiaPizzeria\Models\PizzaModel.cs" Link="PizzaModel.cs" />
+  </ItemGroup>
+
 </Project>

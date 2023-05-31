@@ -12,7 +12,7 @@ namespace LaMiaPizzeria.Controllers.API
         [HttpGet]
         public IActionResult GetPizzas()
         {
-            using(PizzaContext db = new PizzaContext())
+            using (PizzaContext db = new PizzaContext())
             {
                 List<PizzaModel> pizzas = db.Pizze.ToList();
                 return Ok(pizzas);
@@ -22,29 +22,31 @@ namespace LaMiaPizzeria.Controllers.API
         [HttpGet]
         public IActionResult SearchByTitle(string Name)
         {
-            using(PizzaContext db = new PizzaContext())
+            using (PizzaContext db = new PizzaContext())
             {
                 PizzaModel? pizzaToSearch = db.Pizze.Where(pizza => pizza.Name.Contains(Name)).FirstOrDefault();
-                if(pizzaToSearch == null)
+                if (pizzaToSearch == null)
                 {
                     return NotFound("La pizza richiesta non esiste!");
-                } else
+                }
+                else
                 {
                     return Ok(pizzaToSearch);
                 }
             }
         }
 
-        [HttpGet("{id}")] 
+        [HttpGet("{id}")]
         public IActionResult SearchById(int id)
         {
             using (PizzaContext db = new PizzaContext())
             {
                 PizzaModel? pizzaId = db.Pizze.Where(pizza => pizza.Id == id).FirstOrDefault();
-                if(pizzaId == null)
+                if (pizzaId == null)
                 {
                     return NotFound("La pizza richiesta non esiste!");
-                } else
+                }
+                else
                 {
                     return Ok(pizzaId);
                 }
@@ -54,11 +56,12 @@ namespace LaMiaPizzeria.Controllers.API
         [HttpPost]
         public IActionResult Create([FromBody] PizzaModel pizza)
         {
-           if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
-           } else
-           {
+            }
+            else
+            {
                 using (PizzaContext db = new PizzaContext())
                 {
                     db.Add(pizza);
@@ -67,6 +70,6 @@ namespace LaMiaPizzeria.Controllers.API
                     return Ok();
                 }
             }
-        }
+        } 
     }
 }

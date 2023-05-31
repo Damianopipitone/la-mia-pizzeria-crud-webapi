@@ -1,38 +1,44 @@
-﻿@model List<PizzaModel>
-
+﻿
 <h1 class="text-center mt-5 text-light bg-black mx-5">MENÙ</h1>
     <div class="container mt-3">
 
-        <div class="row mt-3">
+    <div class="row mt-3" id="card">
 
             @foreach (PizzaModel pizza in Model)
             { 
-                <div class="col-4 mt-2">
-
-                    <div class="card">
-                        <img src="@pizza.ImgSource" class="card-img-top" alt="Tipo di pizza">
-                        <div class="card-body">
-                            <h3 class="card-text">@pizza.Name</h3>
-                            <p class="card-text">@pizza.Description</p>
-                            <h4 class="card-text">@pizza.Price.ToString("0.00") €</h4>
-                        <a class="card-link text-black" aria-current="page" href="@Url.Action("Details", "Pizza", new {id = pizza.Id})">Dettagli</a>
-                        <a class="card-link text-black" aria-current="page" href="@Url.Action("Update", "Pizza", new {id = pizza.Id})">Modifica</a>
-                        <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id" method="post">   
-                           @Html.AntiForgeryToken()
-                            <button type="submit" class="btn btn-danger btn-sm mt-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
-                            </button>
-                        
-                        </form>
-                    </div>
-                    </div>
-                </div>
+                
             }
                    
         </div>
 
     </div>
     
+    @section Scripts{axios.get("localhost7078/api/pizzaAPI/GetPizzas").then(result) => {
+        const listPizzas = result.data;
 
+        debugger: listArticles.forEach(pizza => {
+                document.getElementById("card").innerHTML += ` <div class="col-4 mt-2">
+
+        <div class="card">
+            <img src="@pizza.ImgSource" class="card-img-top" alt="Tipo di pizza">
+            <div class="card-body">
+                <h3 class="card-text">@pizza.Name</h3>
+                <p class="card-text">@pizza.Description</p>
+                <h4 class="card-text">@pizza.Price.ToString("0.00") €</h4>
+                <a class="card-link text-black" aria-current="page" href="@Url.Action("Details", "Pizza", new {id = pizza.Id})">Dettagli</a>
+                <a class="card-link text-black" aria-current="page" href="@Url.Action("Update", "Pizza", new {id = pizza.Id})">Modifica</a>
+                <form asp-controller="Pizza" asp-action="Delete" asp-route-id="@pizza.Id" method="post">
+                    @Html.AntiForgeryToken()
+                    <button type="submit" class="btn btn-danger btn-sm mt-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-activity"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path><line x1="10" y1="11" x2="10" y2="17"></line><line x1="14" y1="11" x2="14" y2="17"></line></svg>
+                    </button>
+
+                </form>
+            </div>
+        </div>
+    </div> `
+        })
+    }
+    }
 
 
